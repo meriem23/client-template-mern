@@ -23,9 +23,6 @@ const UserCard = () => {
         </ul>
       )}
       <div className="user-info">
-        <div className="avatar" style={{ background: "rgba(0,0,0,0.5)" }}>
-          E
-        </div>
         <p>
           <i className="fas fa-user" />
           <span>Eren Yaeger</span>

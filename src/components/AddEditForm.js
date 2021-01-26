@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -29,12 +29,24 @@ Modal.setAppElement("#root");
 
 function AddEditForm() {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [form, setForm] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    phoneNumber: "",
+    homeAddress: "",
+  });
+
   function openModal() {
     setIsOpen(true);
   }
   function closeModal() {
     setIsOpen(false);
   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    closeModal();
+  };
   return (
     <React.Fragment>
       {oldUser ? (
@@ -48,10 +60,11 @@ function AddEditForm() {
         style={customStyles}
       >
         <h2> Add user</h2>
-        <form className="add-edit-form">
+        <form className="add-edit-form" onSubmit={handleSubmit}>
           <label>First Name</label>
           <input
             name="fname"
+            value={form.fname}
             type="text"
             placeholder="Enter your first name..."
             required
@@ -59,6 +72,7 @@ function AddEditForm() {
           <label>Last Name</label>
           <input
             name="lname"
+            value={form.lname}
             type="text"
             placeholder="Enter your last name..."
             required
@@ -66,6 +80,7 @@ function AddEditForm() {
           <label>Email</label>
           <input
             name="email"
+            value={form.email}
             type="email"
             placeholder="Enter your email..."
             required
@@ -73,6 +88,7 @@ function AddEditForm() {
           <label>Phone Number</label>
           <input
             name="phoneNumber"
+            value={form.phoneNumber}
             type="tel"
             pattern="[0-9]{8,}"
             required
@@ -81,6 +97,7 @@ function AddEditForm() {
           <label>Home Address</label>
           <input
             name="homeAddress"
+            value={form.homeAddress}
             type="text"
             required
             placeholder="Enter your home address..."
